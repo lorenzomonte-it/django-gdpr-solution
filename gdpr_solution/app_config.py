@@ -1,6 +1,10 @@
 import django
-from wagtail import __version__ as WAGTAIL_VERSION
 from pkg_resources import parse_version
+
+try:
+    from wagtail import __version__ as WAGTAIL_VERSION
+except ImportError:
+    WAGTAIL_VERSION = False
 
 
 DJANGO_VERSION_TRANSLATION_UGETTEXT = False
