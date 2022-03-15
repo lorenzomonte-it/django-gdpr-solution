@@ -31,6 +31,6 @@ setup(
         "Framework :: Django",
         "Framework :: Wagtail"
     ],
-    install_requires=["Django>=1.11.0", "Wagtail>=1.13.4"],
+    install_requires=["Django>=1.11.0"],
     zip_safe=False,
 )
