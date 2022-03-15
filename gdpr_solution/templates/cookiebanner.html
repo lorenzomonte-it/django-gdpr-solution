@@ -1,0 +1,239 @@
+{% load i18n gdpr_solution %}
+{% get_current_language as LANGUAGE_CODE %}
+
+
+{% for script in cookie_scripts %}
+    {% if cookie_settings.banner_is_active %}
+        {% if script.cookie_type == 1 %}
+            {{script.cookie_script|regex_script:"analytics"|safe}}
+        {% elif script.cookie_type == 2 %}
+            {{script.cookie_script|regex_script:"targeting"|safe}}
+        {% endif %}
+    {% endif %}
+
+    {% if script.cookie_type == 0 %}
+        {{script.cookie_script|safe}}
+    {% endif %}
+{% endfor %}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.8.0/dist/cookieconsent.css">
+<script defer src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v2.8.0/dist/cookieconsent.js"></script>
+
+{% if not cookie_settings.banner_is_active %}
+<script defer>
+    window.addEventListener('load', function() {
+        var buttonSettingsModal = document.querySelectorAll('[data-cc="c-settings"]')
+        buttonSettingsModal.forEach(function(btn){
+            btn.style.display = 'none';
+        })
+    });
+</script>
+{% endif %}
+
+<script defer>
+    window.addEventListener('load', function () {
+        function fetchCreateCookiePost(url, csrf_token, body, cc) {
+            var dataResponse = null
+
+            fetch(url, {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': csrf_token,
+                },
+                body: body
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                cc.set('data', {
+                    value: {
+                        token: data['consent_token']
+                    }
+                });
+            })
+        }
+
+        // obtain plugin
+        var cc = initCookieConsent();
+
+        // run plugin with your configuration
+        cc.run({
+            current_lang: '{{LANGUAGE_CODE}}',
+            autoclear_cookies: true,
+            page_scripts: true,
+            cookie_name: 'cookieConsent',
+            cookie_path: '{{request.path}}',
+            revision: {{cookie_settings.revision_banner|default:"0"}},
+
+            gui_options: {
+                consent_modal: {
+                    layout: '{{cookie_settings.layout_banner}}',
+                    position: '{{cookie_settings.position_y_banner}} {{cookie_settings.position_x_banner}}',
+                    transition: 'slide',
+                    swap_buttons: false
+                },
+                settings_modal: {
+                    layout: '{{cookie_settings.layout_modal}}',
+                    position: '{{cookie_settings.position_modal}}',
+                    transition: 'slide'
+                }
+            },
+
+            onFirstAction: function (user_preferences, cookie) {
+                var dataform = new FormData();
+                dataform.append('user_preferences', cookie['level']);
+                dataform.append('request_url', window.location.href);
+
+                fetchCreateCookiePost('{% url "create_cookie_view" %}', '{{csrf_token}}', dataform, cc)
+            },
+
+            onChange: function (cookie, changed_categories) {
+                var dataform = new FormData();
+                dataform.append('user_preferences', cookie['level']);
+                dataform.append('request_url', window.location.href);
+
+                fetchCreateCookiePost('{% url "create_cookie_view" %}', '{{csrf_token}}', dataform, cc)
+            },
+
+            languages: {
+                '{{LANGUAGE_CODE}}': {
+                    consent_modal: {
+                        title: '{{cookie_settings.title_banner}}',
+                        description: '{{cookie_settings.description_banner|safe}} {% if cookie_settings.banner_is_active %}<button type="button" data-cc="c-settings" class="cc-link">{% translate "Modifica preferenze" %}</button>{% endif %}',
+                        revision_message: '',
+                        primary_btn: {
+                            {% if cookie_settings.banner_is_active %}
+                            text: '{% translate "Accetta tutti" %}',
+                            {% else %}
+                            text: '{% translate "Ok, ho capito" %}',
+                            {% endif %}
+                            role: 'accept_all'
+                        },
+                        {% if cookie_settings.banner_is_active %}
+                        secondary_btn: {
+                            text: '{% translate "Rifiuta" %}',
+                            role: 'accept_necessary'
+                        }
+                        {% endif %}
+                    },
+                    settings_modal: {
+                        title: '{% translate "Preferenze cookie" %}',
+                        save_settings_btn: '{% translate "Salva preferenze" %}',
+                        accept_all_btn: '{% translate "Accetta tutti" %}',
+                        reject_all_btn: '{% translate "Rifiuta" %}',
+                        close_btn_label: 'Close',
+                        blocks: [
+                            {
+                                title: '{{cookie_settings.title_modal}}',
+                                description: '{{cookie_settings.description_modal|safe}}'
+                            },
+                            {
+                                title: '{% translate "Tecnici e necessari" %}',
+                                description: '{{cookie_settings.description_technical|safe}}',
+                                toggle: {
+                                    value: 'necessary',
+                                    enabled: true,
+                                    readonly: true
+                                }
+                            },
+                            {% if cookie_settings.banner_is_active %}
+                            {% if cookie_settings.description_analytics %}
+                            {
+                                title: '{% translate "Performance e analisi" %}',
+                                description: '{{cookie_settings.description_analytics|safe}}',
+                                toggle: {
+                                    value: 'analytics',
+                                    enabled: false,
+                                    readonly: false
+                                },
+                            },
+                            {% endif %}
+                            {% if cookie_settings.description_marketing %}
+                            {
+                                title: '{% translate "Pubblicitari e di marketing" %}',
+                                description: '{{cookie_settings.description_marketing|safe}}',
+                                toggle: {
+                                    value: 'targeting',
+                                    enabled: false,
+                                    readonly: false
+                                }
+                            },
+                            {% endif %}
+                            {% endif %}
+                            {% if cookie_settings.description_information %}
+                            {
+                                title: '{% translate "Maggiori informazioni" %}',
+                                description: '{{cookie_settings.description_information|safe}}'
+                            }
+                            {% endif %}
+                        ]
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+<!-- languages: {
+    'en': {
+        consent_modal: {
+            title: 'We use cookies!',
+            description: 'Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent. <button type="button" data-cc="c-settings" class="cc-link">Let me choose</button>',
+            primary_btn: {
+                text: '{% translate "Accetta tutti" %}',
+                role: 'accept_all'
+            },
+            secondary_btn: {
+                text: '{% translate "Rifiuta" %}',
+                role: 'accept_necessary'
+            }
+        },
+        settings_modal: {
+            title: '{% translate "Preferenze cookie" %}',
+            save_settings_btn: '{% translate "Salva preferenze" %}',
+            accept_all_btn: '{% translate "Accetta tutti" %}',
+            reject_all_btn: '{% translate "Rifiuta" %}',
+            close_btn_label: 'Close',
+            blocks: [
+                {
+                    title: 'Cookie usage 📢',
+                    description: 'I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full <a href="#" class="cc-link">privacy policy</a>.'
+                },
+                {
+                    title: '{% translate "Tecnici e necessari" %}',
+                    description: 'These cookies are essential for the proper functioning of my website. Without these cookies, the website would not work properly',
+                    toggle: {
+                        value: 'necessary',
+                        enabled: true,
+                        readonly: true
+                    }
+                },
+                {
+                    title: '{% translate "Performance e analisi" %}',
+                    description: 'These cookies allow the website to remember the choices you have made in the past',
+                    toggle: {
+                        value: 'analytics',
+                        enabled: false,
+                        readonly: false
+                    },
+                },
+                {
+                    title: '{% translate "Pubblicitari e di marketing" %}',
+                    description: 'These cookies collect information about how you use the website, which pages you visited and which links you clicked on. All of the data is anonymized and cannot be used to identify you',
+                    toggle: {
+                        value: 'targeting',
+                        enabled: false,
+                        readonly: false
+                    }
+                },
+                {
+                    title: 'More information',
+                    description: 'For any queries in relation to our policy on cookies and your choices, please <a class="cc-link" href="#yourcontactpage">contact us</a>. For any queries in relation to our policy on cookies and your choices, please <a class="cc-link" href="#yourcontactpage">contact us</a>.',
+                }
+            ]
+        }
+    }
+} -->
