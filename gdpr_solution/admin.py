@@ -1,6 +1,11 @@
 from django.contrib import admin
-from django.utils.translation import gettext_lazy as _
 from .models import CookieConsentLog, CookieConsentSettings
+from .app_config import DJANGO_VERSION_TRANSLATION_UGETTEXT
+
+if DJANGO_VERSION_TRANSLATION_UGETTEXT:
+    from django.utils.translation import ugettext_lazy as _
+else:
+    from django.utils.translation import gettext_lazy as _
 
 
 @admin.register(CookieConsentSettings)
