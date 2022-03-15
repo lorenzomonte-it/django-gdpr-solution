@@ -34,38 +34,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='CookieConsentSettings',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title_banner', models.CharField(blank=True, max_length=255, verbose_name='Titolo banner')),
-                ('title_modal', models.CharField(blank=True, max_length=255, verbose_name='Titolo modal')),
-                if WAGTAIL_VERSION:
-                    ('description_banner', wagtail.core.fields.RichTextField(blank=True, verbose_name='Descrizione banner')),
-                    ('description_modal', wagtail.core.fields.RichTextField(blank=True, verbose_name='Descrizione modal')),
-                    ('description_technical', wagtail.core.fields.RichTextField(blank=True, verbose_name='Descrizione cookie tecnici')),
-                    ('description_analytics', wagtail.core.fields.RichTextField(blank=True, verbose_name='Descrizione cookie statistici')),
-                    ('description_marketing', wagtail.core.fields.RichTextField(blank=True, verbose_name='Descrizione cookie marketing')),
-                    ('description_information', wagtail.core.fields.RichTextField(blank=True, verbose_name='Maggiori informazioni')),
-                else:
-                    ('description_banner', models.TextField(blank=True, verbose_name='Descrizione banner')),
-                    ('description_modal', models.TextField(blank=True, verbose_name='Descrizione modal')),
-                    ('description_technical', models.TextField(blank=True, verbose_name='Descrizione cookie tecnici')),
-                    ('description_analytics', models.TextField(blank=True, verbose_name='Descrizione cookie statistici')),
-                    ('description_marketing', models.TextField(blank=True, verbose_name='Descrizione cookie marketing')),
-                    ('description_information', models.TextField(blank=True, verbose_name='Maggiori informazioni')),
-                ('layout_banner', models.CharField(choices=[('box', 'Box'), ('cloud', 'Cloud'), ('bar', 'Bar')], default='box', max_length=255, verbose_name='Layout banner')),
-                ('position_y_banner', models.CharField(choices=[('top', 'Top'), ('middle', 'Middle'), ('bottom', 'Bottom')], default='bottom', max_length=255, verbose_name='Posizione Y banner')),
-                ('position_x_banner', models.CharField(choices=[('left', 'Left'), ('center', 'Center'), ('right', 'Right')], default='left', max_length=255, verbose_name='Posizione X banner')),
-                ('layout_modal', models.CharField(choices=[('box', 'Box'), ('bar', 'Bar')], default='box', max_length=255, verbose_name='Layout modal')),
-                ('position_modal', models.CharField(choices=[('left', 'Left'), ('right', 'Right')], default='left', max_length=255, verbose_name='Posizione modal')),
-                ('banner_is_active', models.BooleanField(default=True, verbose_name='Attivare il banner?')),
-                ('revision_banner', models.IntegerField(default=0)),
-            ],
-            options={
-                'verbose_name_plural': 'Cookie settings',
-            },
-        ),
-        migrations.CreateModel(
             name='CookieScript',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
