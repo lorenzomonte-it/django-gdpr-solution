@@ -10,7 +10,7 @@ For customize the cookie banner and all its functionality, go to the official re
 ## 🚀️ Installation
 - Install app with pip
 ```console
-$ pip install gdpr_solution
+$ pip install django-gdpr-solution
 ```
 
 

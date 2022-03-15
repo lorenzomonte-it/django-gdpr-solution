@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from wagtail.admin.edit_handlers import FieldPanel, RichTextField, MultiFieldPanel, HelpPanel
-from .config import COOKIEBANNER_IS_WAGTAIL_PROJECT
+from .app_config import COOKIEBANNER_IS_WAGTAIL_PROJECT
 
 
 COOKIE_TYPE_CHOICE = (

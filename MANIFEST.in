@@ -1,0 +1,4 @@
+include LICENSE *.rst *.txt *.md
+graft gdpr_solution
+global-exclude __pycache__
+global-exclude *.py[co]
