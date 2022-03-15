@@ -40,3 +40,15 @@ urlpatterns = [
 $ ./manage.py makemigrations
 $ ./manage.py migrate
 ```
+
+
+- Last step is to load gdpr_solution and add templatetag on top of head tag on template
+```
+{% load gdpr_solution %}
+
+<head>
+    {% gdpr_cookie_banner %}
+    ...
+    ...
+</head>
+```
