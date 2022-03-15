@@ -7,7 +7,7 @@ import secrets
 import datetime
 import csv
 
-from .models import CookieConsentLog, CookieConsentSettings
+from .models import CookieConsentLog
 
 
 # Create your views here.
