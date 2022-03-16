@@ -102,28 +102,28 @@
                 '{{LANGUAGE_CODE}}': {
                     consent_modal: {
                         title: '{{cookie_settings.title_banner|default:"Questo sito web utilizza i cookie"}}',
-                        description: '{{cookie_settings.description_banner|safe|default:"Ciao, questo sito web utilizza cookie necessari per garantire il suo corretto funzionamento."}} {% if cookie_settings.banner_is_active %}<button type="button" data-cc="c-settings" class="cc-link">{% translate "Modifica preferenze" %}</button>{% endif %}',
+                        description: '{{cookie_settings.description_banner|safe|default:"Ciao, questo sito web utilizza cookie necessari per garantire il suo corretto funzionamento."}} {% if cookie_settings.banner_is_active %}<button type="button" data-cc="c-settings" class="cc-link">{% trans "Modifica preferenze" %}</button>{% endif %}',
                         revision_message: '',
                         primary_btn: {
                             {% if cookie_settings.banner_is_active %}
-                            text: '{% translate "Accetta tutti" %}',
+                            text: '{% trans "Accetta tutti" %}',
                             {% else %}
-                            text: '{% translate "Ok, ho capito" %}',
+                            text: '{% tran "Ok, ho capito" %}',
                             {% endif %}
                             role: 'accept_all'
                         },
                         {% if cookie_settings.banner_is_active %}
                         secondary_btn: {
-                            text: '{% translate "Rifiuta" %}',
+                            text: '{% trans "Rifiuta" %}',
                             role: 'accept_necessary'
                         }
                         {% endif %}
                     },
                     settings_modal: {
-                        title: '{% translate "Preferenze cookie" %}',
-                        save_settings_btn: '{% translate "Salva preferenze" %}',
-                        accept_all_btn: '{% translate "Accetta tutti" %}',
-                        reject_all_btn: '{% translate "Rifiuta" %}',
+                        title: '{% trans "Preferenze cookie" %}',
+                        save_settings_btn: '{% trans "Salva preferenze" %}',
+                        accept_all_btn: '{% trans "Accetta tutti" %}',
+                        reject_all_btn: '{% trans "Rifiuta" %}',
                         close_btn_label: 'Close',
                         blocks: [
                             {
@@ -131,7 +131,7 @@
                                 description: '{{cookie_settings.description_modal|safe|default:"Usiamo i cookie per garantire le funzionalità di base del sito web e per migliorare la tua esperienza online. Puoi scegliere per ogni categoria cosa attivare e disattivare quando vuoi. Per ulteriori dettagli relativi ai cookie e ad altri dati sensibili, si prega di leggere la Privacy Policy e la Cookie Policy."}}'
                             },
                             {
-                                title: '{% translate "Tecnici e necessari" %}',
+                                title: '{% trans "Tecnici e necessari" %}',
                                 description: '{{cookie_settings.description_technical|safe}}',
                                 toggle: {
                                     value: 'necessary',
@@ -142,7 +142,7 @@
                             {% if cookie_settings.banner_is_active %}
                             {% if cookie_settings.description_analytics %}
                             {
-                                title: '{% translate "Performance e analisi" %}',
+                                title: '{% trans "Performance e analisi" %}',
                                 description: '{{cookie_settings.description_analytics|safe}}',
                                 toggle: {
                                     value: 'analytics',
@@ -153,7 +153,7 @@
                             {% endif %}
                             {% if cookie_settings.description_marketing %}
                             {
-                                title: '{% translate "Pubblicitari e di marketing" %}',
+                                title: '{% trans "Pubblicitari e di marketing" %}',
                                 description: '{{cookie_settings.description_marketing|safe}}',
                                 toggle: {
                                     value: 'targeting',
@@ -165,7 +165,7 @@
                             {% endif %}
                             {% if cookie_settings.description_information %}
                             {
-                                title: '{% translate "Maggiori informazioni" %}',
+                                title: '{% trans "Maggiori informazioni" %}',
                                 description: '{{cookie_settings.description_information|safe}}'
                             }
                             {% endif %}
@@ -176,64 +176,3 @@
         });
     });
 </script>
-
-<!-- languages: {
-    'en': {
-        consent_modal: {
-            title: 'We use cookies!',
-            description: 'Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent. <button type="button" data-cc="c-settings" class="cc-link">Let me choose</button>',
-            primary_btn: {
-                text: '{% translate "Accetta tutti" %}',
-                role: 'accept_all'
-            },
-            secondary_btn: {
-                text: '{% translate "Rifiuta" %}',
-                role: 'accept_necessary'
-            }
-        },
-        settings_modal: {
-            title: '{% translate "Preferenze cookie" %}',
-            save_settings_btn: '{% translate "Salva preferenze" %}',
-            accept_all_btn: '{% translate "Accetta tutti" %}',
-            reject_all_btn: '{% translate "Rifiuta" %}',
-            close_btn_label: 'Close',
-            blocks: [
-                {
-                    title: 'Cookie usage 📢',
-                    description: 'I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full <a href="#" class="cc-link">privacy policy</a>.'
-                },
-                {
-                    title: '{% translate "Tecnici e necessari" %}',
-                    description: 'These cookies are essential for the proper functioning of my website. Without these cookies, the website would not work properly',
-                    toggle: {
-                        value: 'necessary',
-                        enabled: true,
-                        readonly: true
-                    }
-                },
-                {
-                    title: '{% translate "Performance e analisi" %}',
-                    description: 'These cookies allow the website to remember the choices you have made in the past',
-                    toggle: {
-                        value: 'analytics',
-                        enabled: false,
-                        readonly: false
-                    },
-                },
-                {
-                    title: '{% translate "Pubblicitari e di marketing" %}',
-                    description: 'These cookies collect information about how you use the website, which pages you visited and which links you clicked on. All of the data is anonymized and cannot be used to identify you',
-                    toggle: {
-                        value: 'targeting',
-                        enabled: false,
-                        readonly: false
-                    }
-                },
-                {
-                    title: 'More information',
-                    description: 'For any queries in relation to our policy on cookies and your choices, please <a class="cc-link" href="#yourcontactpage">contact us</a>. For any queries in relation to our policy on cookies and your choices, please <a class="cc-link" href="#yourcontactpage">contact us</a>.',
-                }
-            ]
-        }
-    }
-} -->

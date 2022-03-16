@@ -4,7 +4,7 @@
 {% block object-tools-items %}
     {% if 'cookieconsentlog' in request.path %}
         <li>
-            <a href="{% url 'export_django' %}" class="grp-state-focus addlink">{% translate 'Esporta dati CSV' %}</a>
+            <a href="{% url 'export_django' %}" class="grp-state-focus addlink">{% trans 'Esporta dati CSV' %}</a>
         </li>
     {% endif %}
 
