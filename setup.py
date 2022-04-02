@@ -2,6 +2,7 @@
 
 from os import path
 from setuptools import find_packages, setup
+from io import open
 
 from gdpr_solution import __version__
 
