@@ -104,7 +104,10 @@ class CookieConsentSettings(models.Model):
 
     def save(self, *args, **kwargs):
         self.revision_banner = self.revision_banner + 1
-        super().save(*args, **kwargs)
+        if DJANGO_VERSION_LESS_THAN_2:
+            super(CookieConsentSettings, self).save(*args, **kwargs)
+        else:
+            super().save(*args, **kwargs)
 
     def __str__(self):
         return 'Settings'
