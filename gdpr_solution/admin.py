@@ -41,7 +41,10 @@ class CookieConsentSettingsAdmin(admin.ModelAdmin):
     # search_fields = []
 
     def has_add_permission(self, request):
-        return False if self.model.objects.count() > 0 else super().has_add_permission(request)
+        if DJANGO_VERSION_LESS_THAN_2:
+            return False if self.model.objects.count() > 0 else super(CookieConsentSettingsAdmin, self).has_add_permission(request)
+        else:
+            return False if self.model.objects.count() > 0 else super().has_add_permission(request)
 
     def has_delete_permission(self, request, obj=None):
         return False
