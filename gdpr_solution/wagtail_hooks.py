@@ -12,7 +12,7 @@ if COOKIEBANNER_IS_WAGTAIL_PROJECT:
             return True
 
         def user_can_create(self, user):
-            return False if self.model.objects.count() > 0 else True
+            return False
 
         def user_can_edit_obj(self, user, obj):
             return False
@@ -25,7 +25,7 @@ if COOKIEBANNER_IS_WAGTAIL_PROJECT:
             return True
 
         def user_can_create(self, user):
-            return False
+            return False if self.model.objects.count() > 0 else True
 
         def user_can_delete_obj(self, user, obj):
             return False

@@ -2,12 +2,6 @@
 
 from django.db import migrations, models
 
-try:
-    from wagtail import __version__ as WAGTAIL_VERSION
-    import wagtail.core.fields
-except ImportError:
-    WAGTAIL_VERSION = False
-
 
 class Migration(migrations.Migration):
 
