@@ -3,7 +3,7 @@ from django.http.response import JsonResponse
 from django.http import HttpResponse
 
 import string
-import secrets
+import random
 import datetime
 import csv
 
@@ -27,7 +27,7 @@ class CookieCreateView(View):
             consent_anonymize_ip = '{one}.{two}.{three}.0'.format(one=ca_ip[0], two=ca_ip[1], three=ca_ip[2])
 
             cookie_model_obj = CookieConsentLog()
-            cookie_model_obj.consent_token = ''.join(secrets.choice(string.ascii_letters + string.digits) for i in range(35)) + '=' + str(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
+            cookie_model_obj.consent_token = ''.join(random.choice(string.ascii_letters + string.digits) for i in range(35)) + '=' + str(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
             cookie_model_obj.consent_url = cookie_from_url
             cookie_model_obj.consent_user_agent = request.META['HTTP_USER_AGENT']
             cookie_model_obj.consent_anonymize_ip = consent_anonymize_ip
