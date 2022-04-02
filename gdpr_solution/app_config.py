@@ -7,9 +7,9 @@ except ImportError:
     WAGTAIL_VERSION = False
 
 
-DJANGO_VERSION_TRANSLATION_UGETTEXT = False
+DJANGO_VERSION_LESS_THAN_2 = False
 if parse_version(django.get_version()) < parse_version('2.0.0'):
-    DJANGO_VERSION_TRANSLATION_UGETTEXT = True
+    DJANGO_VERSION_LESS_THAN_2 = True
 
 
 COOKIEBANNER_IS_WAGTAIL_PROJECT = False
