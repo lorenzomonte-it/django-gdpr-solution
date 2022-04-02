@@ -24,7 +24,7 @@ class CookieCreateView(View):
             else:
                 consent_anonymize_ip = request.META.get('REMOTE_ADDR')
             ca_ip = consent_anonymize_ip.split('.')
-            consent_anonymize_ip = f'{ca_ip[0]}.{ca_ip[1]}.{ca_ip[2]}.0'
+            consent_anonymize_ip = '{one}.{two}.{three}.0'.format(one=ca_ip[0], two=ca_ip[1], three=ca_ip[2])
 
             cookie_model_obj = CookieConsentLog()
             cookie_model_obj.consent_token = ''.join(secrets.choice(string.ascii_letters + string.digits) for i in range(35)) + '=' + str(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
@@ -46,7 +46,7 @@ class DjangoExportView(View):
         field_names = [field.name for field in model_obj]
 
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = f'attachment; filename=Cookie_Consent_Log-{datetime.datetime.now()}.csv'
+        response['Content-Disposition'] = 'attachment; filename=Cookie_Consent_Log-{date_time}.csv'.format(date_time=datetime.datetime.now())
 
         writer = csv.writer(response)
         writer.writerow(field_names)
