@@ -1,7 +1,7 @@
 from django.db import models
-from .app_config import COOKIEBANNER_IS_WAGTAIL_PROJECT, DJANGO_VERSION_TRANSLATION_UGETTEXT
+from .app_config import COOKIEBANNER_IS_WAGTAIL_PROJECT, DJANGO_VERSION_LESS_THAN_2
 
-if DJANGO_VERSION_TRANSLATION_UGETTEXT:
+if DJANGO_VERSION_LESS_THAN_2:
     from django.utils.translation import ugettext_lazy as _
 else:
     from django.utils.translation import gettext_lazy as _
