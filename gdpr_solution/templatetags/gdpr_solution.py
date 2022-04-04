@@ -9,11 +9,14 @@ register = template.Library()
 
 @register.simple_tag(takes_context=True)
 def gdpr_cookie_banner(context):
-    t = template.loader.get_template('cookiebanner.html')
+    template_cookie = template.loader.get_template('cookiebanner.html')
+    cookie_script = CookieScript.objects.all()
     data = {}
-    data['cookie_scripts'] = CookieScript.objects.all()
+    data['cookie_script'] = cookie_script
+    data['has_cookie_scripts_analytics'] = cookie_script.filter(cookie_type=1).exists()
+    data['has_cookie_scripts_targeting'] = cookie_script.filter(cookie_type=2).exists()
     data['cookie_settings'] = CookieConsentSettings.objects.all().first()
-    return t.render(data, request=context['request'])
+    return template_cookie.render(data, request=context['request'])
 
 
 @register.filter()
