@@ -1,0 +1,179 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-06 21:35+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gdpr_solution/models.py:15
+msgid "Tecnici/Necessari"
+msgstr "Technical"
+
+#: gdpr_solution/models.py:16
+msgid "Statistiche"
+msgstr "Analytics"
+
+#: gdpr_solution/models.py:17
+msgid "Marketing"
+msgstr ""
+
+#: gdpr_solution/models.py:22
+msgid "Nome"
+msgstr "Name"
+
+#: gdpr_solution/models.py:23
+msgid "Tipologia"
+msgstr "Tipology"
+
+#: gdpr_solution/models.py:24
+msgid "Script JS"
+msgstr ""
+
+#: gdpr_solution/models.py:35
+msgid "Chiave consenso"
+msgstr "Key consent"
+
+#: gdpr_solution/models.py:36
+msgid "Consenso Cookie Url"
+msgstr "Cookie consent Url"
+
+#: gdpr_solution/models.py:37
+msgid "Data e Ora"
+msgstr "Date and Time"
+
+#: gdpr_solution/models.py:38
+msgid "User Agent"
+msgstr ""
+
+#: gdpr_solution/models.py:39
+msgid "IP Anonymize"
+msgstr ""
+
+#: gdpr_solution/models.py:40
+msgid "Lista cookie accettati"
+msgstr "Accepted cookie list"
+
+#: gdpr_solution/models.py:51
+msgid "Titolo banner"
+msgstr "Banner title"
+
+#: gdpr_solution/models.py:52
+msgid "Titolo modal"
+msgstr "Modal title"
+
+#: gdpr_solution/models.py:55 gdpr_solution/models.py:62
+msgid "Descrizione banner"
+msgstr "Banner description"
+
+#: gdpr_solution/models.py:56 gdpr_solution/models.py:63
+msgid "Descrizione modal"
+msgstr "Modal description"
+
+#: gdpr_solution/models.py:57
+msgid "Descrizione cookie tecnici"
+msgstr "Technical cookie description"
+
+#: gdpr_solution/models.py:58
+msgid "Descrizione cookie statistici"
+msgstr "Analytics cookie description"
+
+#: gdpr_solution/models.py:59 gdpr_solution/models.py:66
+msgid "Descrizione cookie marketing"
+msgstr "Marketing cookie description"
+
+#: gdpr_solution/models.py:60 gdpr_solution/models.py:67
+#: gdpr_solution/templates/cookiebanner.html:168
+msgid "Maggiori informazioni"
+msgstr "More information"
+
+#: gdpr_solution/models.py:64
+msgid "Descrizione  cookie tecnici"
+msgstr "Technical cookie description"
+
+#: gdpr_solution/models.py:65
+msgid "Descrizione  cookie statistici"
+msgstr "Analytics cookie description"
+
+#: gdpr_solution/models.py:69
+msgid "Layout banner"
+msgstr ""
+
+#: gdpr_solution/models.py:70
+msgid "Posizione Y banner"
+msgstr "Position Y banner"
+
+#: gdpr_solution/models.py:71
+msgid "Posizione X banner"
+msgstr "Position X banner"
+
+#: gdpr_solution/models.py:72
+msgid "Layout modal"
+msgstr ""
+
+#: gdpr_solution/models.py:73
+msgid "Posizione modal"
+msgstr "Position modal"
+
+#: gdpr_solution/models.py:75
+msgid "Attivare il banner?"
+msgstr "Activate the banner?"
+
+#: gdpr_solution/templates/admin/gdpr_solution/change_list.html:7
+msgid "Esporta dati CSV"
+msgstr "Export CSV"
+
+#: gdpr_solution/templates/cookiebanner.html:105
+msgid "Modifica preferenze"
+msgstr "Change preferences"
+
+#: gdpr_solution/templates/cookiebanner.html:109
+#: gdpr_solution/templates/cookiebanner.html:125
+msgid "Accetta tutti"
+msgstr "Accept all"
+
+#: gdpr_solution/templates/cookiebanner.html:111
+msgid "Ok, ho capito"
+msgstr "Ok, I understand"
+
+#: gdpr_solution/templates/cookiebanner.html:117
+#: gdpr_solution/templates/cookiebanner.html:126
+msgid "Rifiuta"
+msgstr "Reject"
+
+#: gdpr_solution/templates/cookiebanner.html:123
+msgid "Preferenze cookie"
+msgstr "Cookie preferences"
+
+#: gdpr_solution/templates/cookiebanner.html:124
+msgid "Salva preferenze"
+msgstr "Save preferences"
+
+#: gdpr_solution/templates/cookiebanner.html:134
+msgid "Tecnici e necessari"
+msgstr "Technical and necessary"
+
+#: gdpr_solution/templates/cookiebanner.html:145
+msgid "Performance e analisi"
+msgstr "Performance and analysis"
+
+#: gdpr_solution/templates/cookiebanner.html:156
+msgid "Pubblicitari e di marketing"
+msgstr "Advertising and marketing"
+
+#: gdpr_solution/templates/modeladmin/gdpr_solution/inspect.html:13
+#, python-format
+msgid "Back to %(model_name)s list"
+msgstr ""
