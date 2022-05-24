@@ -140,7 +140,7 @@
                                 }
                             },
                             {% if cookie_settings.banner_is_active %}
-                            {% if has_cookie_scripts_analytics %}
+                            {% if has_cookie_scripts_analytics or cookie_settings.tag_analytics_is_active %}
                             {
                                 title: '{% trans "Performance e analisi" %}',
                                 description: '{{cookie_settings.description_analytics|safe}}',
@@ -151,7 +151,7 @@
                                 },
                             },
                             {% endif %}
-                            {% if has_cookie_scripts_targeting %}
+                            {% if has_cookie_scripts_targeting or cookie_settings.tag_marketing_is_active %}
                             {
                                 title: '{% trans "Pubblicitari e di marketing" %}',
                                 description: '{{cookie_settings.description_marketing|safe}}',

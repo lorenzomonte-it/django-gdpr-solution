@@ -29,6 +29,9 @@ class CookieConsentSettingsAdmin(admin.ModelAdmin):
         ("Descrizione cookie", {
             'fields': ('description_technical', 'description_analytics', 'description_marketing')
         }),
+        ("TAG Manager", {
+            'fields': ('tag_analytics_is_active', 'tag_marketing_is_active')
+        }),
         ("Altro", {
             'fields': ('description_information', )
         }),

@@ -66,6 +66,9 @@ class CookieConsentSettings(models.Model):
         description_marketing = models.TextField(_("Descrizione cookie marketing"), blank=True)
         description_information = models.TextField(_("Maggiori informazioni"), blank=True)
 
+    tag_analytics_is_active = models.BooleanField(_("Gestire cookie ANALYTICS tramite tag manager?"), default=False)
+    tag_marketing_is_active = models.BooleanField(_("Gestire cookie MARKETING tramite tag manager?"), default=False)
+
     layout_banner = models.CharField(_("Layout banner"), max_length=255, choices=(('box', 'Box'), ('cloud', 'Cloud'), ('bar', 'Bar')), default='box')
     position_y_banner = models.CharField(_("Posizione Y banner"), max_length=255, choices=(('top', 'Top'), ('middle', 'Middle'), ('bottom', 'Bottom')), default='bottom')
     position_x_banner = models.CharField(_("Posizione X banner"), max_length=255, choices=(('left', 'Left'), ('center', 'Center'), ('right', 'Right')), default='left')
@@ -96,6 +99,10 @@ class CookieConsentSettings(models.Model):
                 FieldPanel("description_analytics"),
                 FieldPanel("description_marketing"),
             ], heading="Descrizione cookie"),
+            MultiFieldPanel([
+                FieldPanel("tag_analytics_is_active"),
+                FieldPanel("tag_marketing_is_active"),
+            ], heading="TAG Manager"),
             FieldPanel('description_information'),
             MultiFieldPanel([
                 HelpPanel(content="<ul style='margin-left:12px;margin-top:-40px;margin-bottom:-24px;'><li style='list-style-type:square;'>Attivando il banner hai la possibilità di gestire il consenso di tutti i cookie;</li><li style='list-style-type:square;'>Se invece disattivi il banner, verranno mostrati solo i cookie tecnici/necessari, mostrando all'utente solo il banner informativo.</li></ul>"),
