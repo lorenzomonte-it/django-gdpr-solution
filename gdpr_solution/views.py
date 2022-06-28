@@ -13,7 +13,7 @@ from .models import CookieConsentLog
 # Create your views here.
 class CookieCreateView(View):
     def post(self, request, **kwargs):
-        if request.is_ajax():
+        if (request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'):
             cookie_preferences = request.POST.get('user_preferences')
             cookie_from_url = request.POST.get('request_url')
 
