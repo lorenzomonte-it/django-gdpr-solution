@@ -2,7 +2,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 
-{% for script in cookie_scripts %}
+{% for script in cookie_script %}
     {% if cookie_settings.banner_is_active %}
         {% if script.cookie_type == 1 %}
             {{script.cookie_script|regex_script:"analytics"|safe}}
@@ -65,7 +65,7 @@
             autoclear_cookies: true,
             page_scripts: true,
             cookie_name: 'cookieConsent',
-            cookie_path: '{{request.path}}',
+            cookie_path: '/',
             revision: {{cookie_settings.revision_banner|default:"0"}},
 
             gui_options: {
